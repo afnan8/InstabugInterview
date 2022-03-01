@@ -9,25 +9,44 @@ import XCTest
 @testable import InstabugNetworkClient
 
 class InstabugNetworkClientTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func testSessionInitialized() {
+        let sessionManger = SessionManager()
+        XCTAssertNotNil(sessionManger.session)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testDataTaskReturn() {
+        let request = RequestConvertible(baseURL: "https://httpbin.org/", endPoint: "get", method: .get, headers: nil, parameters: nil)
+        
+        let task = APIClient.instance.dataTask(with: request) { _, _, _ in }
+        XCTAssertNotNil(task)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testGetResquests() {
+        let expectation = expectation(description: "get rquest completed")
+        let request = RequestConvertible(baseURL: "https://httpbin.org/", endPoint: "get", method: .get, headers: nil, parameters: nil)
+        
+        var result: OperationResult?
+        APIClient.instance.request(with: request) { _result in
+            result = _result
+            expectation.fulfill()
         }
+        waitForExpectations(timeout: 10)
+        XCTAssertNotNil(result)
     }
-
+    
+    func testPostResquests() {
+        let expectation = expectation(description: "post rquest completed")
+        let request = RequestConvertible(baseURL: "https://httpbin.org/", endPoint: "status", method: .post, headers: nil, parameters: ["codes": 200])
+        
+        var result: OperationResult?
+        APIClient.instance.request(with: request) { _result in
+            result = _result
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 210)
+        XCTAssertNotNil(result)
+    }
+    
+    
 }
