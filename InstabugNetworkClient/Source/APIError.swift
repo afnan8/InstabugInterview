@@ -9,6 +9,7 @@ import Foundation
 
 public enum APIError: Error {
     
+    case invalidURL
     case invalidRequest
     case invalidResponse
     // No data received from the server.

@@ -15,13 +15,17 @@ public protocol HTTPRequest {
     var parameters: Parameters? { get }
 }
 
-public struct RequestConvertible: HTTPRequest {
+public protocol URLRequestConvertible: HTTPRequest {
+    func asURLRequest() throws -> URLRequest
+}
+
+public struct RequestConvertible: URLRequestConvertible {
     
     public var baseURL: String
     public var endPoint: String
     public var method: HTTPMethod
     public var headers: HTTPHeaders?
-    public var parameters: Parameters?
+    @CustomPayload public var parameters: Parameters?
     
     init(baseURL: String, endPoint: String, method: HTTPMethod, headers: HTTPHeaders?, parameters: Parameters?) {
         self.baseURL = baseURL
@@ -39,29 +43,14 @@ public struct RequestConvertible: HTTPRequest {
         parameters = request.parameters
     }
     
-    public func asURLRequest() throws -> URLRequest? {
-        
+    public func asURLRequest() throws -> URLRequest {
         guard let url = URL(string: baseURL + endPoint) else {
-            return nil
+            throw APIError.invalidURL
         }
-        
         var urlRequest = URLRequest(url: url)
-        
         urlRequest.httpMethod = method.rawValue
-        
-        headers?.forEach({ (key: String, value: String) in
-            urlRequest.setValue(value, forHTTPHeaderField: key)
-        })
-        
-        if urlRequest.httpMethod != "GET" {
-            let bodyParameters = try?  JSONSerialization.data(
-                withJSONObject: parameters ?? [:],
-                options: .prettyPrinted)
-            urlRequest.httpBody = bodyParameters
-        }
-        
+        urlRequest.allHTTPHeaderFields = headers
+        urlRequest.httpBody = $parameters
         return urlRequest
     }
-    
-    
 }

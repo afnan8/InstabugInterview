@@ -8,11 +8,11 @@
 import Foundation
 import CoreData
 
-class PersistentContainer: NSPersistentContainer {
+open class PersistentContainer: NSPersistentContainer {
     
-    static let shared = PersistentContainer(name: "InstabugNetworkCoreData")
+    public static let shared = PersistentContainer(name: "InstabugNetworkCoreData")
     
-    override func newBackgroundContext() -> NSManagedObjectContext {
+    open override func newBackgroundContext() -> NSManagedObjectContext {
         let context = super.newBackgroundContext()
         context.name = "background_context"
 //        context.transactionAuthor = "main_app_background_context"
@@ -21,14 +21,13 @@ class PersistentContainer: NSPersistentContainer {
         return context
     }
     
-    func loadPersistentStores() {
-     
+    public func loadPersistentStores() {
         loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        
         viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
     }
+    
 }

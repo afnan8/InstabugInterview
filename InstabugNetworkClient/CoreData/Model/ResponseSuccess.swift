@@ -19,11 +19,6 @@ final class Success: NSManagedObject, Identifiable {
 }
 
 final class ClientError: NSManagedObject, Identifiable {
-    
     @NSManaged public var errorCode: Int64
     @NSManaged public var errorDomain: String?
-    
-//    @nonobjc public class func fetchRequest() -> NSFetchRequest<ClientError> {
-//        return NSFetchRequest<ClientError>(entityName: "ClientError")
-//    }
 }
