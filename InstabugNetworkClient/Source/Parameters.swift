@@ -8,7 +8,6 @@
 import Foundation
 
 public typealias Parameters = [String : Any]
-public typealias Payload =  Data?
 
 @propertyWrapper
 public struct CustomPayload {

@@ -18,7 +18,7 @@ class InstabugNetworkClientTests: XCTestCase {
     func testDataTaskReturn() {
         let request = RequestConvertible(baseURL: "https://httpbin.org/", endPoint: "get", method: .get, headers: nil, parameters: nil)
         
-        let task = APIClient.instance.dataTask(with: request) { _, _, _ in }
+        let task = NetworkClient.instance.dataTask(with: request) { _, _, _ in }
         XCTAssertNotNil(task)
     }
     
@@ -27,11 +27,11 @@ class InstabugNetworkClientTests: XCTestCase {
         let request = RequestConvertible(baseURL: "https://httpbin.org/", endPoint: "get", method: .get, headers: nil, parameters: nil)
         
         var result: OperationResult?
-        APIClient.instance.request(with: request) { _result in
+        NetworkClient.instance.request(with: request) { _result in
             result = _result
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 100)
         XCTAssertNotNil(result)
     }
     
@@ -40,13 +40,11 @@ class InstabugNetworkClientTests: XCTestCase {
         let request = RequestConvertible(baseURL: "https://httpbin.org/", endPoint: "status", method: .post, headers: nil, parameters: ["codes": 200])
         
         var result: OperationResult?
-        APIClient.instance.request(with: request) { _result in
+        NetworkClient.instance.request(with: request) { _result in
             result = _result
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 210)
+        waitForExpectations(timeout: 10)
         XCTAssertNotNil(result)
     }
-    
-    
 }

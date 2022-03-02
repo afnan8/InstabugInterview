@@ -1,5 +1,5 @@
 //
-//  ResponseSuccess.swift
+//  Response.swift
 //  InstabugNetworkClient
 //
 //  Created by Afnan MacBook Pro on 01/03/2022.
@@ -9,8 +9,8 @@ import Foundation
 import CoreData
 
 final class Response: NSManagedObject, Identifiable {
-    @NSManaged public var error: ClientError?
     @NSManaged public var success: Success?
+    @NSManaged public var clientError: ClientError?
 }
 
 final class Success: NSManagedObject, Identifiable {

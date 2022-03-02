@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G415" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ClientError" representedClassName="ClientError" syncable="YES">
+    <entity name="ClientError" representedClassName=".ClientError" syncable="YES">
         <attribute name="errorCode" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="errorDomain" optional="YES" attributeType="String"/>
-        <relationship name="error" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Response" inverseName="error" inverseEntity="Response"/>
+        <relationship name="clientError" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Response" inverseName="clientError" inverseEntity="Response"/>
     </entity>
     <entity name="Request" representedClassName=".Request" syncable="YES">
         <attribute name="httpMethod" attributeType="String" defaultValueString="get"/>
@@ -11,7 +11,7 @@
         <attribute name="requestURL" attributeType="URI"/>
     </entity>
     <entity name="Response" representedClassName=".Response" syncable="YES">
-        <relationship name="error" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ClientError" inverseName="error" inverseEntity="ClientError"/>
+        <relationship name="clientError" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClientError" inverseName="clientError" inverseEntity="ClientError"/>
         <relationship name="success" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Success" inverseName="success" inverseEntity="Success"/>
     </entity>
     <entity name="Success" representedClassName=".Success" syncable="YES">
@@ -20,9 +20,9 @@
         <relationship name="success" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Response" inverseName="success" inverseEntity="Response"/>
     </entity>
     <elements>
-        <element name="ClientError" positionX="-555.3494262695312" positionY="213.2146606445312" width="128" height="88"/>
         <element name="Request" positionX="-657.0994262695312" positionY="18.69194030761719" width="128" height="88"/>
-        <element name="Response" positionX="-447.3953857421875" positionY="-147.2815399169922" width="128" height="73"/>
+        <element name="Response" positionX="-447.3953857421875" positionY="-147.2815399169922" width="128" height="59"/>
         <element name="Success" positionX="-327.4127807617188" positionY="240.8205871582031" width="128" height="88"/>
+        <element name="ClientError" positionX="-486" positionY="18" width="128" height="74"/>
     </elements>
 </model>

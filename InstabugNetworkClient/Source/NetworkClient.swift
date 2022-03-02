@@ -22,8 +22,6 @@ open class NetworkClient: NSObject, ResponseValidation {
     
     var sessionManager: SessionManager?
     
-//    let dispatchSemaphore = DispatchSemaphore(value: 2)
-//    let dispatchGroup = DispatchGroup()
     let dispatchQueue = DispatchQueue.global()
     
     private init(sessionManager: SessionManager = SessionManager()) {
@@ -48,10 +46,8 @@ open class NetworkClient: NSObject, ResponseValidation {
             guard let self = self else {return}
             self.handelServerResponse(data: data, urlResponse: urlResponse, error: error) { operationResult in
                 completion(operationResult)
-//                self.validateRequest()
                 self.saveRequestData(request: request, operationResult: operationResult)
             }
-            
         })
         task?.resume()
     }
@@ -59,11 +55,9 @@ open class NetworkClient: NSObject, ResponseValidation {
     func validateRequest() {
         let context = PersistentContainer.shared.viewContext
         dispatchQueue.sync() {
-    //            self.dispatchSemaphore.wait()
             print("recordsLimitValidation start")
             RequestOperations.shared.recordsLimitValidation(in: context)
             print("recordsLimitValidation finished")
-//            self.dispatchSemaphore.signal()
         }
     }
     
@@ -74,13 +68,10 @@ open class NetworkClient: NSObject, ResponseValidation {
             defer {
                 self?.validateRequest()
             }
-//            self.dispatchSemaphore.wait()
             print("save request start")
             RequestOperations.shared.save(context: context, values: requestConvertable, operationResult: operationResult)
             print("save request finished")
-//            self.dispatchSemaphore.signal()
         }
-
     }
     
     func handelServerResponse(data: Data?, urlResponse: URLResponse?, error: Error?,  completion: @escaping (OperationResult) -> Void) {

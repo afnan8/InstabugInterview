@@ -19,6 +19,22 @@
 		24AA93CD25AF0F0D007588C7 /* InstabugNetworkClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AA93B825AF0F0D007588C7 /* InstabugNetworkClient.framework */; };
 		24AA93CE25AF0F0D007588C7 /* InstabugNetworkClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AA93B825AF0F0D007588C7 /* InstabugNetworkClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24AA93D925AF0F24007588C7 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AA93D825AF0F24007588C7 /* NetworkClient.swift */; };
+		44848D6627CD3DAD00E64C38 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D6527CD3DAD00E64C38 /* HTTPMethod.swift */; };
+		44848D6C27CD4F7700E64C38 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D6B27CD4F7700E64C38 /* APIError.swift */; };
+		44848D6E27CD576C00E64C38 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D6D27CD576C00E64C38 /* Router.swift */; };
+		44848D7027CD61BB00E64C38 /* RequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D6F27CD61BB00E64C38 /* RequestConvertible.swift */; };
+		44848D7627CE14BA00E64C38 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D7527CE14BA00E64C38 /* SessionManager.swift */; };
+		44848D7927CE1A1400E64C38 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D7827CE1A1400E64C38 /* Response.swift */; };
+		44848D8027CE1C0F00E64C38 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D7F27CE1C0F00E64C38 /* Request.swift */; };
+		44848D8327CE38F200E64C38 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D8227CE38F200E64C38 /* PersistentContainer.swift */; };
+		44848D8427CE9E0E00E64C38 /* InstabugNetworkCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44848D7227CD824300E64C38 /* InstabugNetworkCoreData.xcdatamodeld */; };
+		44848D8627CEB38F00E64C38 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D8527CEB38F00E64C38 /* Parameters.swift */; };
+		44848D8927CEB47000E64C38 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D8827CEB47000E64C38 /* Data+Extension.swift */; };
+		44848D8B27CEC3A300E64C38 /* CoreDataOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D8A27CEC3A300E64C38 /* CoreDataOperations.swift */; };
+		44848D8D27CF592300E64C38 /* ResponseValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D8C27CF592300E64C38 /* ResponseValidation.swift */; };
+		44848D9227D0064600E64C38 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D9127D0064600E64C38 /* CoreDataError.swift */; };
+		44848D9427D0100B00E64C38 /* InstabugCoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D9327D0100800E64C38 /* InstabugCoreDataTests.swift */; };
+		44848D9727D01F0100E64C38 /* NSManagedObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44848D9627D01F0000E64C38 /* NSManagedObject+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +91,22 @@
 		24AA93C725AF0F0D007588C7 /* InstabugNetworkClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstabugNetworkClientTests.swift; sourceTree = "<group>"; };
 		24AA93C925AF0F0D007588C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24AA93D825AF0F24007588C7 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		44848D6527CD3DAD00E64C38 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		44848D6B27CD4F7700E64C38 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		44848D6D27CD576C00E64C38 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		44848D6F27CD61BB00E64C38 /* RequestConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConvertible.swift; sourceTree = "<group>"; };
+		44848D7327CD824300E64C38 /* InstabugNetworkCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InstabugNetworkCoreData.xcdatamodel; sourceTree = "<group>"; };
+		44848D7527CE14BA00E64C38 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		44848D7827CE1A1400E64C38 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		44848D7F27CE1C0F00E64C38 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		44848D8227CE38F200E64C38 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
+		44848D8527CEB38F00E64C38 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		44848D8827CEB47000E64C38 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		44848D8A27CEC3A300E64C38 /* CoreDataOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataOperations.swift; sourceTree = "<group>"; };
+		44848D8C27CF592300E64C38 /* ResponseValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseValidation.swift; sourceTree = "<group>"; };
+		44848D9127D0064600E64C38 /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
+		44848D9327D0100800E64C38 /* InstabugCoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstabugCoreDataTests.swift; sourceTree = "<group>"; };
+		44848D9627D01F0000E64C38 /* NSManagedObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +166,7 @@
 				24AA93A725AF0DA5007588C7 /* Assets.xcassets */,
 				24AA93A925AF0DA5007588C7 /* LaunchScreen.storyboard */,
 				24AA93AC25AF0DA5007588C7 /* Info.plist */,
+				44848D6D27CD576C00E64C38 /* Router.swift */,
 			);
 			path = InstabugInterview;
 			sourceTree = "<group>";
@@ -141,9 +174,10 @@
 		24AA93B925AF0F0D007588C7 /* InstabugNetworkClient */ = {
 			isa = PBXGroup;
 			children = (
-				24AA93BA25AF0F0D007588C7 /* InstabugNetworkClient.h */,
-				24AA93BB25AF0F0D007588C7 /* Info.plist */,
-				24AA93D825AF0F24007588C7 /* NetworkClient.swift */,
+				44848D8727CEB44100E64C38 /* Helpers */,
+				44848D7B27CE1BAB00E64C38 /* Supporting Files */,
+				44848D7C27CE1BBC00E64C38 /* Source */,
+				44848D7A27CE1B7300E64C38 /* CoreData */,
 			);
 			path = InstabugNetworkClient;
 			sourceTree = "<group>";
@@ -152,9 +186,63 @@
 			isa = PBXGroup;
 			children = (
 				24AA93C725AF0F0D007588C7 /* InstabugNetworkClientTests.swift */,
+				44848D9327D0100800E64C38 /* InstabugCoreDataTests.swift */,
 				24AA93C925AF0F0D007588C7 /* Info.plist */,
 			);
 			path = InstabugNetworkClientTests;
+			sourceTree = "<group>";
+		};
+		44848D7A27CE1B7300E64C38 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				44848D7227CD824300E64C38 /* InstabugNetworkCoreData.xcdatamodeld */,
+				44848D7D27CE1BE800E64C38 /* Model */,
+				44848D8227CE38F200E64C38 /* PersistentContainer.swift */,
+				44848D8A27CEC3A300E64C38 /* CoreDataOperations.swift */,
+				44848D9127D0064600E64C38 /* CoreDataError.swift */,
+				44848D9627D01F0000E64C38 /* NSManagedObject+Extension.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		44848D7B27CE1BAB00E64C38 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				24AA93BB25AF0F0D007588C7 /* Info.plist */,
+				24AA93BA25AF0F0D007588C7 /* InstabugNetworkClient.h */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		44848D7C27CE1BBC00E64C38 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				24AA93D825AF0F24007588C7 /* NetworkClient.swift */,
+				44848D6527CD3DAD00E64C38 /* HTTPMethod.swift */,
+				44848D6B27CD4F7700E64C38 /* APIError.swift */,
+				44848D7527CE14BA00E64C38 /* SessionManager.swift */,
+				44848D6F27CD61BB00E64C38 /* RequestConvertible.swift */,
+				44848D8527CEB38F00E64C38 /* Parameters.swift */,
+				44848D8C27CF592300E64C38 /* ResponseValidation.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		44848D7D27CE1BE800E64C38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44848D7827CE1A1400E64C38 /* Response.swift */,
+				44848D7F27CE1C0F00E64C38 /* Request.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		44848D8727CEB44100E64C38 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				44848D8827CEB47000E64C38 /* Data+Extension.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44848D6E27CD576C00E64C38 /* Router.swift in Sources */,
 				24AA93A325AF0DA4007588C7 /* ViewController.swift in Sources */,
 				24AA939F25AF0DA4007588C7 /* AppDelegate.swift in Sources */,
 				24AA93A125AF0DA4007588C7 /* SceneDelegate.swift in Sources */,
@@ -312,6 +401,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				24AA93D925AF0F24007588C7 /* NetworkClient.swift in Sources */,
+				44848D8027CE1C0F00E64C38 /* Request.swift in Sources */,
+				44848D6627CD3DAD00E64C38 /* HTTPMethod.swift in Sources */,
+				44848D9727D01F0100E64C38 /* NSManagedObject+Extension.swift in Sources */,
+				44848D7627CE14BA00E64C38 /* SessionManager.swift in Sources */,
+				44848D8427CE9E0E00E64C38 /* InstabugNetworkCoreData.xcdatamodeld in Sources */,
+				44848D9227D0064600E64C38 /* CoreDataError.swift in Sources */,
+				44848D8627CEB38F00E64C38 /* Parameters.swift in Sources */,
+				44848D8D27CF592300E64C38 /* ResponseValidation.swift in Sources */,
+				44848D6C27CD4F7700E64C38 /* APIError.swift in Sources */,
+				44848D7027CD61BB00E64C38 /* RequestConvertible.swift in Sources */,
+				44848D8927CEB47000E64C38 /* Data+Extension.swift in Sources */,
+				44848D7927CE1A1400E64C38 /* Response.swift in Sources */,
+				44848D8327CE38F200E64C38 /* PersistentContainer.swift in Sources */,
+				44848D8B27CEC3A300E64C38 /* CoreDataOperations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24AA93C825AF0F0D007588C7 /* InstabugNetworkClientTests.swift in Sources */,
+				44848D9427D0100B00E64C38 /* InstabugCoreDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +631,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InstabugNetworkClient/Info.plist;
+				INFOPLIST_FILE = "InstabugNetworkClient/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -555,7 +659,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InstabugNetworkClient/Info.plist;
+				INFOPLIST_FILE = "InstabugNetworkClient/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -650,6 +754,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		44848D7227CD824300E64C38 /* InstabugNetworkCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				44848D7327CD824300E64C38 /* InstabugNetworkCoreData.xcdatamodel */,
+			);
+			currentVersion = 44848D7327CD824300E64C38 /* InstabugNetworkCoreData.xcdatamodel */;
+			path = InstabugNetworkCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 24AA939325AF0DA4007588C7 /* Project object */;
 }

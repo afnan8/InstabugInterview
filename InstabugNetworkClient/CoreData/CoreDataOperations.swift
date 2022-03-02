@@ -30,7 +30,7 @@ open class RequestOperations {
                 let responseError = ClientError(context: context)
                 responseError.errorDomain = error?.localizedDescription
                 responseError.errorCode = Int64(response?.statusCode ?? 0)
-                responseEntity.error = responseError
+                responseEntity.clientError = responseError
             }
             request.httpMethod = values.method.rawValue
             request.payload = values.$parameters
@@ -39,6 +39,34 @@ open class RequestOperations {
         }
     }
     
+    func recordsLimitValidation(in context: NSManagedObjectContext) {
+        context.perform { [weak self] in
+            let fetchRequests = Request.fetchRequest()
+            let fetchResponses = Response.fetchRequest()
+            self?.limitValidation(context: context,
+                                  fetchRequests: fetchRequests, fetchResponses)
+            
+        }
+    }
+    
+    func limitValidation(context: NSManagedObjectContext, fetchRequests: NSFetchRequest<NSFetchRequestResult>...) {
+        do {
+            for fetchRequest in fetchRequests {
+                fetchRequest.shouldRefreshRefetchedObjects = true
+                let records = try context.fetch(fetchRequest)
+                if  records.count > 1000 {
+                    guard let record = records.first as? NSManagedObject else {
+                        throw CoreDataError.entityTypeError
+                    }
+                    context.delete(record)
+                    save(context: context)
+                }
+            }
+            print("requests count \(try context.fetch(fetchRequests[0]).count), Responses count \(try context.fetch(fetchRequests[0]).count))")
+        } catch {
+            print("Failed to delete record: \(error)")
+        }
+    }
     
     func save(context: NSManagedObjectContext) {
         do {
@@ -46,42 +74,6 @@ open class RequestOperations {
             context.reset()
         } catch {
             print("Error: Failed to insert save request: \(error)")
-        }
-    }
-    
-    func recordsLimitValidation(in context: NSManagedObjectContext) {
-        context.perform { [weak self] in
-            
-            do {
-                let fetchRequests = Request.fetchRequest()
-                let fetchResponses = Response.fetchRequest()
-                fetchRequests.shouldRefreshRefetchedObjects = true
-                fetchResponses.shouldRefreshRefetchedObjects = true
-                
-                let requests = try context.fetch(fetchRequests)
-                let responses = try context.fetch(fetchResponses)
-                
-                if  requests.count > 999 {
-                    guard let record = requests.first as? NSManagedObject else {
-                        let error = NSError(domain: "", code: 1000, userInfo: [ NSLocalizedDescriptionKey: "Invalid Entity Type, should be NSManagedObject"])
-                        throw error
-                    }
-                    context.delete(record)
-                }
-                if responses.count > 999 {
-                    guard let record = responses.first as? NSManagedObject else {
-                        let error = NSError(domain: "", code: 1000, userInfo: [ NSLocalizedDescriptionKey: "Invalid Entity Type, should be NSManagedObject"])
-                        throw error
-                    }
-                    context.delete(record)
-                }
-                if fetchResponses.includesPendingChanges || fetchRequests.includesPendingChanges {
-                    self?.save(context: context)
-                }
-                print("requests count \(requests.count), Responses count \(responses.count)")
-            } catch {
-                print("Failed to delete record: \(error)")
-            }
         }
     }
     
