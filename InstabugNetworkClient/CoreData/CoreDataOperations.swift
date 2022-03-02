@@ -60,7 +60,7 @@ open class RequestOperations {
                 
                 let requests = try context.fetch(fetchRequests)
                 let responses = try context.fetch(fetchResponses)
-                                
+                
                 if  requests.count > 999 {
                     guard let record = requests.first as? NSManagedObject else {
                         let error = NSError(domain: "", code: 1000, userInfo: [ NSLocalizedDescriptionKey: "Invalid Entity Type, should be NSManagedObject"])
@@ -86,22 +86,17 @@ open class RequestOperations {
     }
     
     public func deleteAllRecords() {
-        let taskContext = PersistentContainer.shared.newBackgroundContext()
-        taskContext.perform { [weak self] in
-            
-            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Request.fetchRequest())
-            batchDeleteRequest.resultType = .resultTypeCount
-            do {
-                let batchDeleteResult = try taskContext.execute(batchDeleteRequest) as? NSBatchDeleteResult
-                self?.save(context: taskContext)
-                print("records deleted, count: \(String(describing: batchDeleteResult?.result))")
-            } catch {
-                print("Failed to delete existing records: \(error)")
+        let storeContainer = PersistentContainer.shared.persistentStoreCoordinator
+        do {
+            // Delete each existing persistent store
+            for store in storeContainer.persistentStores {
+                try storeContainer.destroyPersistentStore( at: store.url!, ofType: store.type, options: nil)
             }
+        }catch {
+            print("Failed to delete records: \(error)")
         }
+        PersistentContainer.shared.loadPersistentStores()
     }
-    
-    
 }
 
 
