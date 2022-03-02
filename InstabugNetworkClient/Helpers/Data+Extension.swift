@@ -9,7 +9,7 @@ import Foundation
 
 extension Data {
     
-    func convertToMB() -> Double {
+    private func convertToMB() -> Double {
         let bcf = ByteCountFormatter()
         bcf.allowedUnits = [.useMB]
         bcf.countStyle = .file
@@ -17,4 +17,10 @@ extension Data {
         guard let size = Double(sizeString.replacingOccurrences(of: " MB", with: "")) else { return 0}
         return size
     }
+    
+    func validate() -> Data? {
+        guard self.convertToMB() < 1 else { return Data("payload too large".utf8)}
+        return self
+    }
+    
 }
