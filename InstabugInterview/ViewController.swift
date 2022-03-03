@@ -25,6 +25,7 @@ class ViewController: UIViewController {
             switch result {
             case .result(_, let response):
                 print(response!.statusCode)
+                sender.setTitle("\(response?.statusCode ?? 0)", for: .normal)
             case .error(let error, _):
                 print(error!.localizedDescription)
             }

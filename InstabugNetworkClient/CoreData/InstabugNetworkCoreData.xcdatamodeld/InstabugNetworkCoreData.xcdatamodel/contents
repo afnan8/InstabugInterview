@@ -8,7 +8,7 @@
     <entity name="Request" representedClassName=".Request" syncable="YES">
         <attribute name="httpMethod" attributeType="String" defaultValueString="get"/>
         <attribute name="payload" optional="YES" attributeType="Binary"/>
-        <attribute name="requestURL" attributeType="URI"/>
+        <attribute name="requestURL" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Response" representedClassName=".Response" syncable="YES">
         <relationship name="clientError" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClientError" inverseName="clientError" inverseEntity="ClientError"/>
@@ -20,9 +20,9 @@
         <relationship name="success" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Response" inverseName="success" inverseEntity="Response"/>
     </entity>
     <elements>
-        <element name="Request" positionX="-657.0994262695312" positionY="18.69194030761719" width="128" height="88"/>
+        <element name="ClientError" positionX="-486" positionY="18" width="128" height="74"/>
+        <element name="Request" positionX="-657.0994262695312" positionY="18.69194030761719" width="128" height="74"/>
         <element name="Response" positionX="-447.3953857421875" positionY="-147.2815399169922" width="128" height="59"/>
         <element name="Success" positionX="-327.4127807617188" positionY="240.8205871582031" width="128" height="88"/>
-        <element name="ClientError" positionX="-486" positionY="18" width="128" height="74"/>
     </elements>
 </model>

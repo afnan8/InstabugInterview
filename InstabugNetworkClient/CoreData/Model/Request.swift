@@ -11,5 +11,5 @@ import CoreData
 final class Request: NSManagedObject, Identifiable {
     @NSManaged public var httpMethod: String?
     @NSManaged public var payload: Data?
-    @NSManaged public var requestURL: URL?
+    @NSManaged public var requestURL: String? 
 }

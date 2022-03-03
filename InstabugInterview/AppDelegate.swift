@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         PersistentContainer.shared.loadPersistentStores()
-//        RequestOperations.shared.deleteAllRecords()
+        RequestOperations.shared.deleteAllRecords()
         return true
     }
 

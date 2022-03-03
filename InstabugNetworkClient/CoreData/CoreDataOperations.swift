@@ -34,7 +34,7 @@ open class RequestOperations {
             }
             request.httpMethod = values.method.rawValue
             request.payload = values.$parameters
-            request.requestURL = URL(string: values.baseURL + values.endPoint)
+            request.requestURL = values.baseURL + values.endPoint
             self?.save(context: context)
         }
     }
