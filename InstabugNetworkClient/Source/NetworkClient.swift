@@ -42,10 +42,12 @@ open class NetworkClient: NSObject, ResponseValidation {
     }
     
     open func request(with request: URLRequestConvertible, completion: @escaping (OperationResult) -> Void) {
-        let task = dataTask(with: request, completionHandler: { [weak self] (data, urlResponse, error) in
+        let task = self.dataTask(with: request, completionHandler: { [weak self] (data, urlResponse, error) in
             guard let self = self else {return}
             self.handelServerResponse(data: data, urlResponse: urlResponse, error: error) { operationResult in
-                completion(operationResult)
+                DispatchQueue.main.async {
+                    completion(operationResult)
+                }
                 self.saveRequestData(request: request, operationResult: operationResult)
             }
         })
@@ -83,7 +85,6 @@ open class NetworkClient: NSObject, ResponseValidation {
         switch result {
         case .success(let data):
             completion(OperationResult.result(data, urlResponse))
-        
         case .failure(let error):
             completion(OperationResult.error(APIError.unknown(error.localizedDescription), urlResponse))
         }
