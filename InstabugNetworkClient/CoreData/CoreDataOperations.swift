@@ -78,16 +78,18 @@ open class RequestOperations {
     }
     
     public func deleteAllRecords() {
-        let storeContainer = PersistentContainer.shared.persistentStoreCoordinator
-        do {
-            // Delete each existing persistent store
-            for store in storeContainer.persistentStores {
-                try storeContainer.destroyPersistentStore( at: store.url!, ofType: store.type, options: nil)
+        DispatchQueue.global().async {
+            let storeContainer = PersistentContainer.shared.persistentStoreCoordinator
+            do {
+                // Delete each existing persistent store
+                for store in storeContainer.persistentStores {
+                    try storeContainer.destroyPersistentStore( at: store.url!, ofType: store.type, options: nil)
+                }
+            }catch {
+                print("Failed to delete records: \(error)")
             }
-        }catch {
-            print("Failed to delete records: \(error)")
+            PersistentContainer.shared.loadPersistentStores()
         }
-        PersistentContainer.shared.loadPersistentStores()
     }
 }
 

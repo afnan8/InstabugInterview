@@ -11,27 +11,33 @@ import XCTest
 class InstabugCoreDataTests: XCTestCase {
 
     func testSaveNewRecord() {
-        let expectation = expectation(description: "saveRequestData")
         let context = PersistentContainer.shared.newBackgroundContext()
         let request = RequestConvertible(baseURL: "https://httpbin.org/", endPoint: "get", method: .get, headers: nil, parameters: nil)
         NetworkClient.instance.request(with: request) { _result in
             NetworkClient.instance.saveRequestData(request: request, operationResult: _result)
-            expectation.fulfill()
+            XCTAssertNotNil(Request.totalNumber(in:context))
         }
-        waitForExpectations(timeout: 100)
-        XCTAssertNotNil(Request.totalNumber(in:context))
     }
     
     func testLoadingNetworkRequests() {
-        testSaveNewRecord()
-        let context = PersistentContainer.shared.newBackgroundContext()
-        let requestsCount = Request.totalNumber(in: context)
-        let responsesCount = Response.totalNumber(in: context)
-        XCTAssertTrue(requestsCount > 0 && responsesCount > 0)
+        let request = RequestConvertible(baseURL: "https://httpbin.org/", endPoint: "get", method: .get, headers: nil, parameters: nil)
+        NetworkClient.instance.request(with: request) { _result in
+            NetworkClient.instance.saveRequestData(request: request, operationResult: _result)
+            let context = PersistentContainer.shared.newBackgroundContext()
+            let requestsCount = Request.totalNumber(in: context)
+            let responsesCount = Response.totalNumber(in: context)
+            XCTAssertTrue(requestsCount > 0 && responsesCount > 0)
+        }
     }
     
     func testRecordsLimit() {
         let context = PersistentContainer.shared.newBackgroundContext()
+        for _ in 0...1000 {
+            let request = RequestConvertible(baseURL: "https://httpbin.org/", endPoint: "get", method: .get, headers: nil, parameters: nil)
+            NetworkClient.instance.request(with: request) { _result in
+                NetworkClient.instance.saveRequestData(request: request, operationResult: _result)
+            }
+        }
         let expectedCount = 1000
         let requestCount = Request.totalNumber(in: context)
         let responsesCount = Response.totalNumber(in: context)
